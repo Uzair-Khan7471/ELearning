@@ -1,0 +1,38 @@
+﻿@model LearningManagementSystem.Models.CourseQuestion
+
+@{
+    ViewData["Title"] = "CourseQuestion Create";
+    Layout = "DashboardLayout";
+}
+
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["message"].ToString()
+    </div>
+}
+
+
+
+
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <label asp-for="CourseFk"> </label>
+    <select asp-for="CourseFk" asp-items="@ViewBag.C" class="form-control">
+        <option selected>
+            Select Course
+        </option>
+    </select>
+
+
+    <label asp-for="Questions"> </label>
+    <input type="text" asp-for="Questions" class="form-control" />
+    <br />
+    <span asp-validation-for="Questions" class="bg-danger"></span>
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

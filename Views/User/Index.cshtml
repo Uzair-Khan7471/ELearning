@@ -1,0 +1,62 @@
+﻿@model IEnumerable<LearningManagementSystem.Models.User>
+@{
+    ViewData["Title"] = "User Index";
+    Layout = "DashboardLayout";
+}
+
+@if (TempData["message"] != null)
+{
+    
+
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> @TempData["message"].ToString()
+    </div>
+
+
+
+}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Role</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Password</th>
+                <th scope="col">Profile Pic</th>
+                <th scope="col">Status</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+
+                <tr>
+                    <th>@Html.DisplayFor(y=>x.Id)</th>
+                    <th>@Html.DisplayFor(y=>x.RoleFkNavigation.Name)</th>
+                    <th>@Html.DisplayFor(y=>x.Name)</th>
+                    <th>@Html.DisplayFor(y=>x.StatusFkNavigation.Status1)</th>
+                    <th>@Html.DisplayFor(y=>x.GenderNavigation.Gender1)</th>
+                    <th>@Html.DisplayFor(y=>x.BatchFkNavigation.Name)</th>
+                    <th>@Html.DisplayFor(y=>x.Email)</th>
+                    <th>@Html.DisplayFor(y=>x.Phone)</th>
+                    <th>@Html.DisplayFor(y=>x.Password)</th>
+                    <th>@Html.DisplayFor(y=>x.ConfirmPassword)</th>
+
+                    <th><img src="~/@Url.Content(x.Image)" height="100" /> </th>
+                    <td><a asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td><a onclick="return confirm('Are you sure you want to delete this Student : @x.Name')" asp-action="Delete" asp-route-id="@x.Id"> Delete </a></td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>

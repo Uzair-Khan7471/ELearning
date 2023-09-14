@@ -1,0 +1,30 @@
+﻿@model LearningManagementSystem.Models.Lab
+@{
+    ViewData["Title"] = "Lab Edit";
+    Layout = "DashboardLayout";
+
+
+}
+@if (ViewBag.mesg != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-l3abel="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["mesg"].ToString()
+    </div>
+}
+
+
+
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <label asp-for="Name"> </label>
+    <input type="text" asp-for="Name" class="form-control" />
+    <br />
+    <span asp-validation-for="Name" class="bg-danger"></span>
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

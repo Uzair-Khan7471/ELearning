@@ -1,0 +1,67 @@
+﻿@model IEnumerable<LearningManagementSystem.Models.Batch>
+@{
+    ViewData["Title"] = "Batch Index";
+    Layout = "DashboardLayout";
+}
+
+@if (TempData["message"] != null)
+{
+    @*    <script>
+        var text = '@TempData["message"].ToString()';
+        alert(text);
+    </script>*@
+
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> @TempData["message"].ToString()
+    </div>
+
+
+
+}
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">View Batch</li>
+
+
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Batch</th>
+                <th scope="col">Instructor</th>
+                <th scope="col">Lab</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+
+                <tr>
+                    <th>@Html.DisplayFor(y=>x.Id)</th>
+                    <th>@Html.DisplayFor(y=>x.Name)</th>
+                    <th>@Html.DisplayFor(y=>x.LabFkNavigation.Name)</th>
+                    <th>@Html.DisplayFor(y=>x.StartTime)</th>
+                    <th>@Html.DisplayFor(y=>x.EndTime)</th>
+                    <td><a asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td><a onclick="return confirm('Are you sure you want to delete this Batch : @x.Name')" asp-action="Delete" asp-route-id="@x.Id"> Delete </a></td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>

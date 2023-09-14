@@ -1,0 +1,41 @@
+﻿@model LearningManagementSystem.Models.Category
+@{
+    ViewData["Title"] = "Category Edit";
+    Layout = "DashboardLayout";
+
+
+}
+@if (ViewBag.mesg != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["mesg"].ToString()
+    </div>
+}
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">View Category</li>
+            <li class="breadcrumb-item">Edit Category</li>
+
+
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id"/>
+
+    <label asp-for="Name"> </label>
+    <input type="text" asp-for="Name" class="form-control" />
+    <br />
+    <span asp-validation-for="Name" class="bg-danger"></span>
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

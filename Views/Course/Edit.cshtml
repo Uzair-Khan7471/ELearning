@@ -1,0 +1,67 @@
+﻿@model LearningManagementSystem.Models.Course
+
+@{
+    ViewData["Title"] = "Course Edit";
+    Layout = "DashboardLayout";
+}
+
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["message"].ToString()
+    </div>
+}
+
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">View Courses</li>
+            <li class="breadcrumb-item">Edit Courses</li>
+
+
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id"/>
+
+    <label asp-for="CategoryFk"> </label>
+    <select asp-for="CategoryFk" asp-items="ViewBag.category" class="form-control">
+        <option selected>
+            Select Category
+        </option>
+    </select>
+
+
+    <label asp-for="Title"> </label>
+    <input type="text" asp-for="Title" class="form-control" />
+    <br />
+    <span asp-validation-for="Title" class="bg-danger"></span>
+
+    <label asp-for="Description"> </label>
+    <input type="text" asp-for="Description" class="form-control" />
+    <br />
+    <span asp-validation-for="Description" class="bg-danger"></span>
+
+    <label asp-for="Price"> </label>
+    <input type="number" asp-for="Price" class="form-control" />
+    <br />
+    <span asp-validation-for="Price" class="bg-danger"></span>
+
+    <br />
+    <label asp-for="Image"> </label>
+    <input type="file" name="file" accept=".jpg,.png,.jpeg" class="from-control" />
+    <img src="~/@Url.Content(Model.Image)" height="100" />
+
+    <br />
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

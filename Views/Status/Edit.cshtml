@@ -1,0 +1,30 @@
+﻿@model LearningManagementSystem.Models.Status
+@{
+    ViewData["Title"] = "Status Edit";
+    Layout = "DashboardLayout";
+
+
+}
+@if (ViewBag.mesg != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["mesg"].ToString()
+    </div>
+}
+
+
+
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id"/>
+
+    <label asp-for="Status1"> </label>
+    <input type="text" asp-for="Status1" class="form-control" />
+    <br />
+    <span asp-validation-for="Status1" class="bg-danger"></span>
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

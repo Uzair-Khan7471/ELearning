@@ -1,0 +1,87 @@
+﻿@model LearningManagementSystem.Models.User
+
+@{
+    ViewData["Title"] = "User Edit";
+    Layout = "DashboardLayout";
+}
+
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["message"].ToString()
+    </div>
+}
+
+
+
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div asp-validation-summary="ModelOnly"></div>
+
+    <label class="form-label">Select Role : </label>
+    <select asp-for="RoleFk" asp-items="ViewBag.role" class="form-control">
+        <option selected>
+            Select Role
+        </option>
+    </select>
+
+    <label class="form-label">Select Batch : </label>
+    <select asp-for="BatchFk" asp-items="ViewBag.gender" class="form-control">
+        <option selected>
+            Select Batch
+        </option>
+    </select>
+
+
+    <label asp-for="Name"> </label>
+    <input type="text" asp-for="Name" class="form-control" />
+    <br />
+    <span asp-validation-for="Name" class="bg-danger"></span>
+
+
+    <label asp-for="Email"> </label>
+    <input type="email" asp-for="Email" class="form-control" />
+    <br />
+    <span asp-validation-for="Email" class="bg-danger"></span>
+
+    <label asp-for="Phone"> </label>
+    <input type="tel" asp-for="Phone" class="form-control" />
+    <br />
+    <span asp-validation-for="Phone" class="bg-danger"></span>
+
+
+    <label class="form-label">Select Gender : </label>
+    <select asp-for="Gender" asp-items="ViewBag.gender" class="form-control">
+        <option selected>
+            Select Gender
+        </option>
+    </select>
+
+    <label asp-for="Password"> </label>
+    <input type="password" asp-for="Password" class="form-control" />
+    <br />
+    <span asp-validation-for="Password" class="bg-danger"></span>
+
+    <label asp-for="ConfirmPassword"> </label>
+    <input type="password" asp-for="ConfirmPassword" class="form-control" />
+    <br />
+    <span asp-validation-for="ConfirmPassword" class="bg-danger"></span>
+
+    <br />
+    <label asp-for="Image"> </label>
+    <input type="file" name="file" accept=".jpg,.png,.jpeg" class="form-control" />
+    <br />
+
+    <label class="form-label">Select Status : </label>
+    <select asp-for="StatusFk" asp-items="ViewBag.status" class="form-control">
+        <option selected>
+            Select Status
+        </option>
+    </select>
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

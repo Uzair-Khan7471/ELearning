@@ -1,0 +1,41 @@
+﻿@model LearningManagementSystem.Models.CourseAnswer
+
+@{
+    ViewData["Title"] = "CourseAnswer Edit";
+    Layout = "DashboardLayout";
+}
+
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["message"].ToString()
+    </div>
+}
+
+
+
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id" />
+
+
+
+    <label asp-for="CourseQuestionFk"> </label>
+    <select asp-for="CourseQuestionFk" asp-items="@ViewBag.CQ" class="form-control">
+        <option selected>
+            Select Question
+        </option>
+    </select>
+
+
+    <label asp-for="Answers"> </label>
+    <input type="text" asp-for="Answers" class="form-control" />
+    <br />
+    <span asp-validation-for="Answers" class="bg-danger"></span>
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

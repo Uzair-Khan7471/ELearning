@@ -1,0 +1,59 @@
+﻿@model LearningManagementSystem.Models.CourseLecture
+
+@{
+    ViewData["Title"] = "CourseLecture Edit";
+    Layout = "DashboardLayout";
+}
+
+
+@if (ViewBag.message != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["message"].ToString()
+    </div>
+}
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">View Course Lecture</li>
+            <li class="breadcrumb-item">Edit Course Lecture</li>
+
+
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id"/>
+
+    <label asp-for="CourseFk"> </label>
+    <select asp-for="CourseFk" asp-items="ViewBag.course" class="form-control">
+        <option selected>
+            Select Course
+        </option>
+    </select>
+
+    <label asp-for="Title"> </label>
+    <input type="text" asp-for="Title" class="form-control" />
+    <br />
+    <span asp-validation-for="Title" class="bg-danger"></span>
+
+    <label asp-for="Description"> </label>
+    <input type="text" asp-for="Description" class="form-control" />
+    <br />
+    <span asp-validation-for="Description" class="bg-danger"></span>
+
+    <br />
+    <label asp-for="Video"> </label>
+    <input type="file" name="file" accept=".mp4" class="form-control" />
+    <br />
+
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

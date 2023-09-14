@@ -1,0 +1,42 @@
+﻿@model LearningManagementSystem.Models.Gender
+@{
+    ViewData["Title"] = "Gender Edit";
+    Layout = "DashboardLayout";
+
+
+}
+@if (ViewBag.mesg != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Failed!</strong> @ViewData["mesg"].ToString()
+    </div>
+}
+
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Dashboard</li>
+            <li class="breadcrumb-item">View Gender</li>
+            <li class="breadcrumb-item">Edit Gender</li>
+
+
+
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+
+
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <label asp-for="Gender1"> </label>
+    <input type="text" asp-for="Gender1" class="form-control" />
+    <br />
+    <span asp-validation-for="Gender1" class="bg-danger"></span>
+
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+</form>

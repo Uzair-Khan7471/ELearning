@@ -1,0 +1,50 @@
+﻿@model IEnumerable<LearningManagementSystem.Models.CourseAnswer>
+@{
+    ViewData["Title"] = "CourseAnswer Index";
+    Layout = "DashboardLayout";
+}
+
+@if (TempData["message"] != null)
+{
+    @*    <script>
+        var text = '@TempData["message"].ToString()';
+        alert(text);
+    </script>*@
+
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> @TempData["message"].ToString()
+    </div>
+
+
+
+}
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Question</th>
+                <th scope="col">Answer</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model)
+            {
+
+                <tr>
+                    <th>@Html.DisplayFor(y=>x.Id)</th>
+                    <th>@Html.DisplayFor(y=>x.CourseQuestionFkNavigation.Questions)</th>
+                    <th>@Html.DisplayFor(y=>x.Answers)</th>
+                    <td><a asp-action="Edit" asp-route-id="@x.Id">Edit</a></td>
+                    <td><a onclick="return confirm('Are you sure you want to delete this Answer')" asp-action="Delete" asp-route-id="@x.Id"> Delete </a></td>
+                </tr>
+
+            }
+
+        </tbody>
+    </table>
+</div>
